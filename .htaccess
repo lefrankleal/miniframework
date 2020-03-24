@@ -1,0 +1,22 @@
+SetEnvIf Authorization "(.*)" HTTP_AUTHORIZATION=$1
+Options -Indexes
+
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+# RewriteCond %{REQUEST_FILENAME} !-l
+
+ErrorDocument 500 /es/p/500
+ErrorDocument 404 /es/p/404
+ErrorDocument 403 /es/p/404
+ErrorDocument 401 /es/p/404
+ErrorDocument 400 /es/p/500
+
+RewriteRule ^(es|en)\/p\/(404|500)$ /error_docs/$2.php?lang=$1 [QSA,L]
+RewriteRule ^(es|en)\/p\/([a-z_]+)\/?(.*)?$ dashboard.php?lang=$1&p=$2&params=$3 [QSA,L]
+RewriteRule ^(es|en)\/report\/([a-z_]+)\/?(.*)?$ reports.php?lang$1&p=$2&params=$3 [QSA,L]
+RewriteRule ^api/(.+)$ api.php?route=$1 [QSA,L]
+RewriteRule ^(es|en)\/([a-z_]+)$ $2.php?lang=$1 [QSA,L]
+RewriteRule ^documents\/([a-f0-9]{32})\.(jpg|jpeg|png|gif|xls|xlsx|pdf|doc|docx)$ public/documents/$1\.$2 [QSA,L]
+RewriteRule ^(.)$ $1.php [QSA,L]
+RewriteRule ^$ /es/login [QSA,L]

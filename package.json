@@ -1,0 +1,16 @@
+{
+  "name": "mini-framework",
+  "version": "1.0.0",
+  "description": "",
+  "dependencies": {
+    "grunt": "^1.0.3",
+    "grunt-contrib-cssmin": "^3.0.0",
+    "grunt-contrib-uglify": "^4.0.0",
+    "grunt-init": "^0.3.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "Gruntfile.js"
+  },
+  "author": "Frank Leal<franklealorg@gmail.com>"
+}
